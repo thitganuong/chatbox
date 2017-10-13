@@ -19,7 +19,6 @@ var server = http.createServer(app);
 app.listen(process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
-  console.log("test")
   res.send("Server chạy ngon lành.");
 });
 
@@ -43,9 +42,9 @@ app.post('/webhook', function(req, res) {
           var text = message.message.text;
           if(text == 'hi' || text == "hello")
           {
-            sendMessage(senderId, "Trung Quân's Bot: " + 'Xin Chào');
+            sendMessage(senderId, "Hello em iu");
           }
-          else{sendMessage(senderId, "Trung Quân's Bot: " + "Xin lỗi, câu hỏi của bạn chưa có trong hệ thống, chúng tôi sẽ cập nhật sớm nhất.");}
+          else{sendMessage(senderId, "Em iu đang làm gì đó" + senderId);}
         }
       }
     }
