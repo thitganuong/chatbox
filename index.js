@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/webhook', function(req, res) {
-  if (req.query['hub.verify_token'] === 'HaiNT') {
+  if (req.query['hub.verify_token'] === 'haint') {
     res.send(req.query['hub.challenge']);
   }
   res.send('Error, wrong validation token');
@@ -58,7 +58,7 @@ function sendMessage(senderId, message) {
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
-      access_token: "EAACEdEose0cBANHYWd3NOWZAhjz5TFdFOOjQZAqfV0eVdvpXKGDu8g5DksWU3FZAUnpDv7Jtk40c8ZADNXAcZB3Pgwxnf9pJbVHWq2qSDzRkzIKZBRYGQvDFZAuhHzhLeKZABCezHYNnpAbh0SXqFc12ZCrVCgJ5wQy2ewcH5D0ShpAUZAbaGWnr461u2OZCSaKwNZA6uRStQStW7AZDZD",
+      access_token: "EAAXDLESkwZCkBAEUsQFMVp2rM3o3ERLPCUHnbUYLlT9yCt8nvKcAhM0q1U6iMdXTQTalVtroJUXkObDVJ6emx590YLhuvQD0OMc9LL2JWAEIoBbBtaYF1ZCOtGInqpRbkZB3CNdKeXtpegZARp5bRlH3Cjq3mTyDOrODVC8mVgZDZD",
     },
     method: 'POST',
     json: {
