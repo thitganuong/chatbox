@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var request = require('request');
 var router = express();
-
+const apiaiApp = require('apiai')("db81a21d3b0e4a13adcf1bdaf1090d45");
 
 const uuid = require('uuid');
 const async = require('async');

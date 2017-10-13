@@ -1,6 +1,6 @@
 // # SimpleServer
 // A simple chat bot server
-
+const apiaiApp = require('apiai')("db81a21d3b0e4a13adcf1bdaf1090d45");
 var logger = require('morgan');
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -37,19 +37,36 @@ app.post('/webhook', function(req, res) {
     var messaging = entry.messaging;
     for (var message of messaging) {
       var senderId = message.sender.id;
+      let sender = message.sender.id;
       console.log("senderId: " +senderId);
       if (message.message) {
         // Nếu người dùng gửi tin nhắn đến
         if (message.message.text) {
-          var text = message.message.text;
-          if(text == 'hi' || text == "hello")
-          {
-            sendMessage(senderId, "Hello em iu");
-          }
-          else{
-            console.log("Message: " + text);
-            sendMessage(senderId, "Em iu đang làm gì đó " + senderId);
-          }
+        //  var text = message.message.text;
+          let text = message.message.text;
+          let apiai = apiaiApp.textRequest(text, {
+              sessionId: 'tabby_cat' // use any arbitrary id
+            });
+
+            apiai.on('response', (message) => {
+                // Got a response from api.ai. Let's POST to Facebook Messenger
+                sendMessage(senderId, message);
+              });
+
+            apiai.on('error', (error) => {
+                console.log(error);
+              });
+
+            apiai.end();
+
+          // if(text == 'hi' || text == "hello")
+          // {
+          //   sendMessage(senderId, "Hello em iu");
+          // }
+          // else{
+          //   console.log("Message: " + text);
+          //   sendMessage(senderId, "Em iu đang làm gì đó " + senderId);
+          // }
         }
       }
     }
@@ -59,7 +76,8 @@ app.post('/webhook', function(req, res) {
 });
 
 // Gửi thông tin tới REST API để Bot tự trả lời
-function sendMessage(senderId, message) {
+function sendMessage(senderId, response) {
+  let aiText = response.result.fulfillment.speech;
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
@@ -71,8 +89,13 @@ function sendMessage(senderId, message) {
         id: senderId
       },
       message: {
-        text: message
+        text: aiText//message
       },
-    }
+    }, (error, response) => {
+      if (error) {
+          console.log('Error sending message: ', error);
+      } else if (response.body.error) {
+          console.log('Error: ', response.body.error);
+      }
   });
 }
