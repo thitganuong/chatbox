@@ -85,17 +85,15 @@ function sendMessage(senderId, response) {
     },
     method: 'POST',
     json: {
-      recipient: {
-        id: senderId
-      },
-      message: {
-        text: aiText//message
-      },
-    }, (error, response) => {
+      recipient: {id: senderId},
+      message: {text: aiText}
+      //message
+    }}, (error, response) => {
       if (error) {
           console.log('Error sending message: ', error);
       } else if (response.body.error) {
           console.log('Error: ', response.body.error);
       }
   });
+  }
 }
