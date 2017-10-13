@@ -31,11 +31,13 @@ app.get('/webhook', function(req, res) {
 
 // Đoạn code xử lý khi có người nhắn tin cho bot
 app.post('/webhook', function(req, res) {
+  console.log("nhan tin nhan ");
   var entries = req.body.entry;
   for (var entry of entries) {
     var messaging = entry.messaging;
     for (var message of messaging) {
       var senderId = message.sender.id;
+      console.log("senderId: " +senderId);
       if (message.message) {
         // Nếu người dùng gửi tin nhắn đến
         if (message.message.text) {
@@ -44,7 +46,10 @@ app.post('/webhook', function(req, res) {
           {
             sendMessage(senderId, "Hello em iu");
           }
-          else{sendMessage(senderId, "Em iu đang làm gì đó" + senderId);}
+          else{
+            console.log(text);
+            sendMessage(senderId, "Em iu đang làm gì đó " + senderId);
+          }
         }
       }
     }
