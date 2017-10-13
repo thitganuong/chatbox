@@ -95,5 +95,4 @@ function sendMessage(senderId, response) {
           console.log('Error: ', response.body.error);
       }
   });
-  }
-}
+};
