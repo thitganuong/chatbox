@@ -19,6 +19,7 @@ var server = http.createServer(app);
 app.listen(process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
+  console.log("test")
   res.send("Server chạy ngon lành.");
 });
 
