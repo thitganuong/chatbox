@@ -47,7 +47,7 @@ app.post('/webhook', function(req, res) {
             sendMessage(senderId, "Hello em iu");
           }
           else{
-            console.log("Message: "text);
+            console.log("Message: " + text);
             sendMessage(senderId, "Em iu đang làm gì đó " + senderId);
           }
         }
