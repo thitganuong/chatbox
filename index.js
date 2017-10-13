@@ -47,7 +47,7 @@ app.post('/webhook', function(req, res) {
             sendMessage(senderId, "Hello em iu");
           }
           else{
-            console.log(text);
+            console.log("Message: "text);
             sendMessage(senderId, "Em iu đang làm gì đó " + senderId);
           }
         }
@@ -63,7 +63,7 @@ function sendMessage(senderId, message) {
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
-      access_token: "EAAXDLESkwZCkBAEUsQFMVp2rM3o3ERLPCUHnbUYLlT9yCt8nvKcAhM0q1U6iMdXTQTalVtroJUXkObDVJ6emx590YLhuvQD0OMc9LL2JWAEIoBbBtaYF1ZCOtGInqpRbkZB3CNdKeXtpegZARp5bRlH3Cjq3mTyDOrODVC8mVgZDZD",
+      access_token: "EAAD7UARi1b8BAOA2erXEqxVSCHjWngVMk3fY6bCCOmxSv3yuSR0q8KtJDbdKElFoK5YtgOEdqaKmPhp5FT0omAC6yMZB5WHiMDydcZAAolHtdKZA0KMNoic1keQ4WjDK8QfzyKTrDGnYawceZBZAKhZB3Hhgs4pt43JmIUaf7ZBaQZDZD",
     },
     method: 'POST',
     json: {

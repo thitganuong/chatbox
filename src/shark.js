@@ -67,7 +67,7 @@ class Shark {
       text += this.processResult(result);
     }
      if (text != '') {
-        facebookBot.doTextResponsePromise('1523206684383484',text);//hai
+        facebookBot.doTextResponsePromise('1344416672352785',text);//hai
       //  facebookBot.doTextResponsePromise('100000262415289',text);//thoan
     }
     if (text != '') console.log(text);
