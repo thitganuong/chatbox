@@ -23,12 +23,51 @@ app.get('/', (req, res) => {
   res.send("Server chạy ngon lành.");
 });
 
-// app.get('/webhook', function(req, res) {
-//   if (req.query['hub.verify_token'] === 'haint') {
-//     res.send(req.query['hub.challenge']);
-//   }
-//   res.send('Error, wrong validation token');
-// });
+app.get('/webhook', function(req, res) {
+  if (req.query['hub.verify_token'] === 'haint') {
+    console.log("nhan tin nhan ");
+    var entries = req.body.entry;
+    for (var entry of entries) {
+      var messaging = entry.messaging;
+      for (var message of messaging) {
+        var senderId = message.sender.id;
+        let sender = message.sender.id;
+        console.log("senderId: " +senderId);
+        if (message.message) {
+          // Nếu người dùng gửi tin nhắn đến
+          if (message.message.text) {
+          //  var text = message.message.text;
+            let text = message.message.text;
+            let apiai = apiaiApp.textRequest(text, {
+                sessionId: 'tabby_cat' // use any arbitrary id
+            });
+
+              apiai.on('response', (message) => {
+                  // Got a response from api.ai. Let's POST to Facebook Messenger
+                  sendMessage(senderId, message);
+                });
+
+              apiai.on('error', (error) => {
+                  console.log(error);
+                });
+
+              apiai.end();
+
+            // if(text == 'hi' || text == "hello")
+            // {
+            //   sendMessage(senderId, "Hello em iu");
+            // }
+            // else{
+            //   console.log("Message: " + text);
+            //   sendMessage(senderId, "Em iu đang làm gì đó " + senderId);
+            // }
+          }
+        }
+      }
+    res.send(req.query['hub.challenge']);
+  }
+  res.send('Error, wrong validation token');
+});
 
 // Đoạn code xử lý khi có người nhắn tin cho bot
 app.post('/webhook', function(req, res) {
