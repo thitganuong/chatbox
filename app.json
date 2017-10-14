@@ -7,11 +7,11 @@
   "env": {
     "FB_VERIFY_TOKEN": {
       "description": "Verification code",
-      "value": ""
+      "value": "haint"
     },
     "FB_PAGE_ACCESS_TOKEN": {
       "description": "Page Access Token",
-      "value": ""
+      "value": "EAAD7UARi1b8BAOA2erXEqxVSCHjWngVMk3fY6bCCOmxSv3yuSR0q8KtJDbdKElFoK5YtgOEdqaKmPhp5FT0omAC6yMZB5WHiMDydcZAAolHtdKZA0KMNoic1keQ4WjDK8QfzyKTrDGnYawceZBZAKhZB3Hhgs4pt43JmIUaf7ZBaQZDZD"
     }
   },
   "engines": {
