@@ -44,9 +44,9 @@ app.post('/webhook', function(req, res) {
         // Nếu người dùng gửi tin nhắn đến
         if (message.message.text) {
         //  var text = message.message.text;
-          let text = message.message.text;
+          let text = (message.message.text).trim();
 
-          if(text == 'getID' || text == "get ID")
+          if(text.toLowerCase() == 'getid' || text.toLowerCase() == "get id")
           {
             sendMessage(senderId, "senderId:" +senderId, false);
           } else {
