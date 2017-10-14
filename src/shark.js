@@ -17,16 +17,16 @@ app.listen(process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
   res.send("Server chạy ngon lành.");
-  var s = new Shark();
-  function run() {
-    s.getCoins()
-     .then((results) => s.insertResults(results))
-     .then(() => s.findFeatureCoins())
-     .then(() => console.log(new Date().toLocaleString() + ' finish'))
-     res.send(infoText);
-  }
-  run();
-  setInterval(run, 5*60*1000);
+  // var s = new Shark();
+  // function run() {
+  //   s.getCoins()
+  //    .then((results) => s.insertResults(results))
+  //    .then(() => s.findFeatureCoins())
+  //    .then(() => console.log(new Date().toLocaleString() + ' finish'))
+  //    res.send(infoText);
+  // }
+  // run();
+  // setInterval(run, 5*60*1000);
 });
 
 var bittrex = require('node.bittrex.api');
