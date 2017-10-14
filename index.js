@@ -48,7 +48,7 @@ app.post('/webhook', function(req, res) {
 
           if(text == 'getID' || text == "get ID")
           {
-            sendMessage(senderId, "senderId:" +senderId);
+            sendMessage(senderId, "senderId:" +senderId, false);
           } else {
               let apiai = apiaiApp.textRequest(text, {
                   sessionId: 'tabby_cat' // use any arbitrary id
@@ -56,7 +56,7 @@ app.post('/webhook', function(req, res) {
 
               apiai.on('response', (message) => {
                   // Got a response from api.ai. Let's POST to Facebook Messenger
-                  sendMessage(senderId, message);
+                  sendMessage(senderId, message, true);
                 });
 
               apiai.on('error', (error) => {
@@ -82,8 +82,12 @@ app.post('/webhook', function(req, res) {
 });
 
 // Gửi thông tin tới REST API để Bot tự trả lời
-function sendMessage(senderId, response) {
-  let aiText = response.result.fulfillment.speech;
+function sendMessage(senderId, response, isAI) {
+  if(isAI){
+    let aiText = response.result.fulfillment.speech;
+  } else {
+    let aiText = response
+  }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {
@@ -92,7 +96,7 @@ function sendMessage(senderId, response) {
     method: 'POST',
     json: {
       recipient: {id: senderId},
-      message: {text: "senderId: " + senderId + " " +aiText}
+      message: {text: aiText}
       //message
     }}, (error, response) => {
       if (error) {
