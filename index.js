@@ -23,20 +23,6 @@ app.get('/', (req, res) => {
   res.send("Server chạy ngon lành.");
 });
 
-app.get('/autoscan', (req, res) => {
-  res.send("START");
-  var s = new Shark();
-  function run() {
-    s.getCoins()
-     .then((results) => s.insertResults(results))
-     .then(() => s.findFeatureCoins())
-     .then(() => console.log(new Date().toLocaleString() + ' finish'))
-  }
-
-  run();
-  setInterval(run, 5*60*1000);
-});
-
 app.get('/webhook', function(req, res) {
   if (req.query['hub.verify_token'] === 'haint') {
     res.send(req.query['hub.challenge']);

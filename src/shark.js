@@ -1,3 +1,34 @@
+var logger = require('morgan');
+var http = require('http');
+var bodyParser = require('body-parser');
+var express = require('express');
+var request = require('request');
+var router = express();
+var infoText = "";
+var app = express();
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+var server = http.createServer(app);
+
+app.listen(process.env.PORT || 3000);
+
+app.get('/', (req, res) => {
+  res.send("Server chạy ngon lành.");
+  var s = new Shark();
+  function run() {
+    s.getCoins()
+     .then((results) => s.insertResults(results))
+     .then(() => s.findFeatureCoins())
+     .then(() => console.log(new Date().toLocaleString() + ' finish'))
+     res.send(infoText);
+  }
+  run();
+  setInterval(run, 5*60*1000);
+});
+
 var bittrex = require('node.bittrex.api');
 const LocalStore = require("./nedb.js")
 const FacebookBot = require("./facebook_bot.js");
@@ -56,7 +87,8 @@ class Shark {
       text += this.processResult(result);
     }
      if (text != '') {
-       res.send(text);
+       infoText = text;
+       r//es.send(text);
       //  facebookBot.doTextResponsePromise('1344416672352785',text);//hai
       //  facebookBot.doTextResponsePromise('100000262415289',text);//thoan
     }
@@ -107,14 +139,3 @@ class Shark {
     return text;
   }
 }
-
-// var s = new Shark();
-// function run() {
-//   s.getCoins()
-//    .then((results) => s.insertResults(results))
-//    .then(() => s.findFeatureCoins())
-//    .then(() => console.log(new Date().toLocaleString() + ' finish'))
-// }
-//
-// run();
-// setInterval(run, 5*60*1000);
