@@ -1,6 +1,7 @@
 // # SimpleServer
 // A simple chat bot server
 const apiaiApp = require('apiai')("db81a21d3b0e4a13adcf1bdaf1090d45");
+const Shark = require("./shark.js");
 var logger = require('morgan');
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -20,6 +21,20 @@ app.listen(process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
   res.send("Server chạy ngon lành.");
+});
+
+app.get('/autoscan', (req, res) => {
+  res.send("START");
+  var s = new Shark();
+  function run() {
+    s.getCoins()
+     .then((results) => s.insertResults(results))
+     .then(() => s.findFeatureCoins())
+     .then(() => console.log(new Date().toLocaleString() + ' finish'))
+  }
+
+  run();
+  setInterval(run, 5*60*1000);
 });
 
 app.get('/webhook', function(req, res) {
@@ -46,7 +61,7 @@ app.post('/webhook', function(req, res) {
           let text = message.message.text;
           let apiai = apiaiApp.textRequest(text, {
               sessionId: 'tabby_cat' // use any arbitrary id
-            });
+          });
 
             apiai.on('response', (message) => {
                 // Got a response from api.ai. Let's POST to Facebook Messenger

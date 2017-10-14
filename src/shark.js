@@ -25,17 +25,6 @@ class Shark {
 			bittrex.getmarketsummaries(function(data) {
 				if (data == null) return reject();
 				var array = JSON.parse(data.toString());
-				var results = array.result.filter(function(coin){ return coin.MarketName.indexOf('USDT-') != -1; });
-				return resolve(results);
-    	})
-		});
-	}
-
-  getCoinsBTC() {
-		return new Promise((resolve, reject) => {
-			bittrex.getmarketsummaries(function(data) {
-				if (data == null) return reject();
-				var array = JSON.parse(data.toString());
 				var results = array.result.filter(function(coin){ return coin.MarketName.indexOf('BTC-') != -1; });
 				return resolve(results);
     	})
@@ -67,7 +56,8 @@ class Shark {
       text += this.processResult(result);
     }
      if (text != '') {
-        facebookBot.doTextResponsePromise('1344416672352785',text);//hai
+       res.send(text);
+      //  facebookBot.doTextResponsePromise('1344416672352785',text);//hai
       //  facebookBot.doTextResponsePromise('100000262415289',text);//thoan
     }
     if (text != '') console.log(text);
@@ -118,22 +108,13 @@ class Shark {
   }
 }
 
-var s = new Shark();
-function run() {
-  s.getCoins()
-   .then((results) => s.insertResults(results))
-   .then(() => s.findFeatureCoins())
-   .then(() => console.log(new Date().toLocaleString() + ' finish'))
-}
-var s2 = new Shark();
-function runBTC() {
-  s2.getCoinsBTC()
-   .then((results) => s2.insertResults(results))
-   .then(() => s2.findFeatureCoins())
-   .then(() => console.log(new Date().toLocaleString() + ' finish'))
-}
-
-run();
-runBTC();
-setInterval(run, 5*60*1000);
-setInterval(runBTC, 5*60*1000);
+// var s = new Shark();
+// function run() {
+//   s.getCoins()
+//    .then((results) => s.insertResults(results))
+//    .then(() => s.findFeatureCoins())
+//    .then(() => console.log(new Date().toLocaleString() + ' finish'))
+// }
+//
+// run();
+// setInterval(run, 5*60*1000);
