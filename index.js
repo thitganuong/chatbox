@@ -23,12 +23,12 @@ app.get('/', (req, res) => {
   res.send("Server chạy ngon lành.");
 });
 
-app.get('/webhook', function(req, res) {
-  if (req.query['hub.verify_token'] === 'haint') {
-    res.send(req.query['hub.challenge']);
-  }
-  res.send('Error, wrong validation token');
-});
+// app.get('/webhook', function(req, res) {
+//   if (req.query['hub.verify_token'] === 'haint') {
+//     res.send(req.query['hub.challenge']);
+//   }
+//   res.send('Error, wrong validation token');
+// });
 
 // Đoạn code xử lý khi có người nhắn tin cho bot
 app.post('/webhook', function(req, res) {
