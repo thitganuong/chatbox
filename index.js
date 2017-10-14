@@ -87,7 +87,7 @@ function sendMessage(senderId, response) {
     method: 'POST',
     json: {
       recipient: {id: senderId},
-      message: {text: "senderId: " + senderId +aiText}
+      message: {text: "senderId: " + senderId + " " +aiText}
       //message
     }}, (error, response) => {
       if (error) {
