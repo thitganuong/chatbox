@@ -83,10 +83,11 @@ app.post('/webhook', function(req, res) {
 
 // Gửi thông tin tới REST API để Bot tự trả lời
 function sendMessage(senderId, response, isAI) {
+  let aiText = ""
   if(isAI){
-    let aiText = response.result.fulfillment.speech;
+     aiText = response.result.fulfillment.speech;
   } else {
-    let aiText = response
+     aiText = response
   }
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
