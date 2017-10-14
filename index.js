@@ -1,7 +1,7 @@
 // # SimpleServer
 // A simple chat bot server
 const apiaiApp = require('apiai')("db81a21d3b0e4a13adcf1bdaf1090d45");
-const Shark = require("./src/shark.js");
+//const Shark = require("./src/shark.js");
 var logger = require('morgan');
 var http = require('http');
 var bodyParser = require('body-parser');
