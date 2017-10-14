@@ -6,7 +6,7 @@ var facebookBot = new FacebookBot();
 var db = new LocalStore();
 var numOfNen = 4
 , recentNenCheck = 2
-, percentCheck = 4;
+, percentCheck = 5;
 
 class Shark {
   constructor() {
@@ -26,6 +26,17 @@ class Shark {
 				if (data == null) return reject();
 				var array = JSON.parse(data.toString());
 				var results = array.result.filter(function(coin){ return coin.MarketName.indexOf('USDT-') != -1; });
+				return resolve(results);
+    	})
+		});
+	}
+
+  getCoinsBTC() {
+		return new Promise((resolve, reject) => {
+			bittrex.getmarketsummaries(function(data) {
+				if (data == null) return reject();
+				var array = JSON.parse(data.toString());
+				var results = array.result.filter(function(coin){ return coin.MarketName.indexOf('BTC-') != -1; });
 				return resolve(results);
     	})
 		});
@@ -114,6 +125,15 @@ function run() {
    .then(() => s.findFeatureCoins())
    .then(() => console.log(new Date().toLocaleString() + ' finish'))
 }
+var s2 = new Shark();
+function runBTC() {
+  s2.getCoinsBTC()
+   .then((results) => s2.insertResults(results))
+   .then(() => s2.findFeatureCoins())
+   .then(() => console.log(new Date().toLocaleString() + ' finish'))
+}
 
 run();
+runBTC();
 setInterval(run, 5*60*1000);
+setInterval(runBTC, 5*60*1000);

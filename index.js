@@ -45,21 +45,26 @@ app.post('/webhook', function(req, res) {
         if (message.message.text) {
         //  var text = message.message.text;
           let text = message.message.text;
-          let apiai = apiaiApp.textRequest(text, {
-              sessionId: 'tabby_cat' // use any arbitrary id
-          });
 
-            apiai.on('response', (message) => {
-                // Got a response from api.ai. Let's POST to Facebook Messenger
-                sendMessage(senderId, message);
+          if(text == 'getID' || text == "get ID")
+          {
+            sendMessage(senderId, "senderId:" +senderId);
+          } else {
+              let apiai = apiaiApp.textRequest(text, {
+                  sessionId: 'tabby_cat' // use any arbitrary id
               });
 
-            apiai.on('error', (error) => {
-                console.log(error);
-              });
+              apiai.on('response', (message) => {
+                  // Got a response from api.ai. Let's POST to Facebook Messenger
+                  sendMessage(senderId, message);
+                });
 
-            apiai.end();
+              apiai.on('error', (error) => {
+                  console.log(error);
+                });
 
+              apiai.end();
+          }
           // if(text == 'hi' || text == "hello")
           // {
           //   sendMessage(senderId, "Hello em iu");
