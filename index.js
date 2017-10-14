@@ -64,6 +64,7 @@ app.get('/webhook', function(req, res) {
           }
         }
       }
+    }
     res.send(req.query['hub.challenge']);
   }
   res.send('Error, wrong validation token');
