@@ -97,3 +97,18 @@ function sendMessage(senderId, response) {
       }
   });
 };
+
+
+app.get('/autoscan', (req, res) => {
+  res.send("START");
+  // var s = new Shark();
+  // function run() {
+  //   s.getCoins()
+  //    .then((results) => s.insertResults(results))
+  //    .then(() => s.findFeatureCoins())
+  //    .then(() => console.log(new Date().toLocaleString() + ' finish'))
+  // }
+  //
+  // run();
+  // setInterval(run, 5*60*1000);
+});
