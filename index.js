@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var request = require('request');
 var router = express();
-
+var shark = new Shark();
 var app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -48,7 +48,9 @@ app.post('/webhook', function(req, res) {
 
           if(text.toLowerCase() == 'getid' || text.toLowerCase() == "get id")
           {
-            sendMessage(senderId, "senderId:" +senderId, false);
+            var xrpData = shark.getXRP();
+            sendMessage(senderId, "senderId:" +xrpData, false);
+            //sendMessage(senderId, "senderId:" +senderId, false);
           } else {
               let apiai = apiaiApp.textRequest(text, {
                   sessionId: 'tabby_cat' // use any arbitrary id

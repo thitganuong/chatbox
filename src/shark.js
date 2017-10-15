@@ -20,6 +20,13 @@ class Shark {
 		});
   }
 
+  getXRP(){
+    bittrex.getticker( { market : 'BTC-LTC' }, function( data, err ) {
+      console.log( data );
+    });
+    return  data;
+  }
+
   getCoins() {
 		return new Promise((resolve, reject) => {
 			bittrex.getmarketsummaries(function(data) {
