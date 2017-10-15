@@ -144,3 +144,5 @@ run();
 runBTC();
 setInterval(run, 5*60*1000);
 setInterval(runBTC, 5*60*1000);
+
+module.exports = Shark;
