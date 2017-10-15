@@ -21,24 +21,14 @@ class Shark {
   }
 
   getXRP(){
-    bittrex.getticker( { market : 'BTC-LTC' }, function( data, err ) {
+    var url = 'https://bittrex.com/api/v1.1/public/getticker?market=USDT-XRP';
+    bittrex.sendCustomRequest( url, function( data, err ) {
       console.log( data );
     });
     return  data;
   }
 
   getCoins() {
-		return new Promise((resolve, reject) => {
-			bittrex.getmarketsummaries(function(data) {
-				if (data == null) return reject();
-				var array = JSON.parse(data.toString());
-				var results = array.result.filter(function(coin){ return coin.MarketName.indexOf('USDT-') != -1; });
-				return resolve(results);
-    	})
-		});
-	}
-
-  getCoinsBTC() {
 		return new Promise((resolve, reject) => {
 			bittrex.getmarketsummaries(function(data) {
 				if (data == null) return reject();
@@ -141,8 +131,6 @@ function runBTC() {
 }
 
 run();
-runBTC();
 setInterval(run, 5*60*1000);
-setInterval(runBTC, 5*60*1000);
 
 module.exports = Shark;
