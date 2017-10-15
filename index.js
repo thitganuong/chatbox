@@ -1,7 +1,7 @@
 // # SimpleServer
 // A simple chat bot server
 const apiaiApp = require('apiai')("db81a21d3b0e4a13adcf1bdaf1090d45");
-//const Shark = require("./src/shark.js");
+const Shark = require("./src/shark.js");
 var logger = require('morgan');
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -53,26 +53,15 @@ app.post('/webhook', function(req, res) {
               let apiai = apiaiApp.textRequest(text, {
                   sessionId: 'tabby_cat' // use any arbitrary id
               });
-
               apiai.on('response', (message) => {
                   // Got a response from api.ai. Let's POST to Facebook Messenger
                   sendMessage(senderId, message, true);
                 });
-
               apiai.on('error', (error) => {
                   console.log(error);
                 });
-
               apiai.end();
           }
-          // if(text == 'hi' || text == "hello")
-          // {
-          //   sendMessage(senderId, "Hello em iu");
-          // }
-          // else{
-          //   console.log("Message: " + text);
-          //   sendMessage(senderId, "Em iu đang làm gì đó " + senderId);
-          // }
         }
       }
     }
