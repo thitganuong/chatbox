@@ -57,10 +57,15 @@ app.post('/webhook', function(req, res) {
 
               .then((results) => sendMessage(senderId,
                 "Người bán(Bid):" + results.result.Bid +"\n"
-              + "Người mua (Ask):" + results.result.Ask +"\n" 
+              + "Người mua (Ask):" + results.result.Ask +"\n"
               + "Giá hiện tại:" + results.result.Last +"\n", false));
 
-          } else {
+          } else if(text.toLowerCase() == 'history' || text.toLowerCase() == "get xrp history")
+          {
+            shark.getXRPHistory()
+              .then((results) => sendMessage(senderId, results, false));
+          }
+          else {
               let apiai = apiaiApp.textRequest(text, {
                   sessionId: 'tabby_cat' // use any arbitrary id
               });

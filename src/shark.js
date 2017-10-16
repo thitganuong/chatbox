@@ -36,6 +36,18 @@ class Shark {
 		    });
       }
 
+  getXRPHistory(){
+    getmarkethistory({market : 'USDT-BTC'}, function(error, data) {});
+    return new Promise((resolve, reject) => {
+			bittrex.getmarkethistory({market : 'USDT-XRP'},function(error,data) {
+				if (data == null) return reject();
+				var array = JSON.parse(data.toString());
+				//var results = array.result.filter(function(coin){ return coin.MarketName.indexOf('BTC-') != -1; });
+				return resolve(array);
+    	})
+		});
+  }
+
   getCoins() {
 		return new Promise((resolve, reject) => {
 			bittrex.getmarketsummaries(function(data) {
