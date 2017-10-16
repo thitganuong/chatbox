@@ -50,8 +50,8 @@ app.post('/webhook', function(req, res) {
           {
             var xrpData = 0;
             shark.getXRP()
-              .then((results) => xrpData = results);
-            //  .then((results) => console.log("kq xrpData:" + results))
+              //.then((results) => xrpData = results);
+              .then((results) => console.log("kq xrpData:" + results));
 
               sendMessage(senderId, "senderId:" + xrpData, false);
             //sendMessage(senderId, "senderId:" +senderId, false);
