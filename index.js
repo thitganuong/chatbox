@@ -56,8 +56,9 @@ app.post('/webhook', function(req, res) {
             shark.getXRP()
 
               .then((results) => sendMessage(senderId,
-                "Bid:" + results.result.Bid +"\n"
-              + "Last:" + results.result.Last +"\n", false));
+                "Người bán(Bid):" + results.result.Bid +"\n"
+              + "Người mua (Ask):" + results.result.Ask +"\n" 
+              + "Giá hiện tại:" + results.result.Last +"\n", false));
 
           } else {
               let apiai = apiaiApp.textRequest(text, {
