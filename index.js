@@ -56,8 +56,8 @@ app.post('/webhook', function(req, res) {
             shark.getXRP()
 
               .then((results) => sendMessage(senderId,
-                "Bid:" + result.result.Bid +"\n"
-              + "Last:" + result.result.Last +"\n", false));
+                "Bid:" + results.result.Bid +"\n"
+              + "Last:" + results.result.Last +"\n", false));
 
           } else {
               let apiai = apiaiApp.textRequest(text, {
