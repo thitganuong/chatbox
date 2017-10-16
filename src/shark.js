@@ -27,7 +27,7 @@ class Shark {
       if (data == null) return reject();
       var array = JSON.parse(data.toString());
       var results = array.result.Bid;
-        this.price = results;
+        price = results;
         console.log("kq:" + results);
     });
     console.log("price:" + price);
