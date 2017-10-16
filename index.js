@@ -51,9 +51,9 @@ app.post('/webhook', function(req, res) {
             var xrpData = 0;
             shark.getXRP()
               //.then((results) => xrpData = results);
-              .then((results) => console.log("kq xrpData:" + results));
+              .then((results) => sendMessage(senderId, "senderId:" + results, false));
 
-              sendMessage(senderId, "senderId:" + xrpData, false);
+            //  sendMessage(senderId, "senderId:" + results, false);
             //sendMessage(senderId, "senderId:" +senderId, false);
           } else {
               let apiai = apiaiApp.textRequest(text, {
