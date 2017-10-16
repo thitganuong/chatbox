@@ -48,8 +48,10 @@ app.post('/webhook', function(req, res) {
 
           if(text.toLowerCase() == 'getid' || text.toLowerCase() == "get id")
           {
-            var xrpData = shark.getXRP();
-            sendMessage(senderId, "senderId:" +xrpData, false);
+            var xrpData = "";
+              xrpData = shark.getXRP();
+              console.log("kq xrpData:" + xrpData);
+              sendMessage(senderId, "senderId:" + xrpData, false);
             //sendMessage(senderId, "senderId:" +senderId, false);
           } else {
               let apiai = apiaiApp.textRequest(text, {

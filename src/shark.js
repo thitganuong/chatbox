@@ -28,7 +28,7 @@ class Shark {
       var results = array.result.Bid;
         console.log("kq:" + results);
         console.log("kq array" +array);
-        return  array;
+        return  results;
     });
   }
 
