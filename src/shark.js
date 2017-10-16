@@ -30,7 +30,7 @@ class Shark {
       price = results
         console.log("kq:" + results);
     });
-    console.log("price:" + results);
+    console.log("price:" + price);
     return  price;
   }
 
