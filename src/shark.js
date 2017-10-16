@@ -23,9 +23,12 @@ class Shark {
   getXRP(){
     var url = 'https://bittrex.com/api/v1.1/public/getticker?market=USDT-XRP';
     bittrex.sendCustomRequest( url, function( data, err ) {
-      console.log( data );
+      if (data == null) return reject();
+      var array = JSON.parse(data.toString());
+      var results = array.result.Bid;
+      console.log( results );
     });
-    return  data;
+    return  results;
   }
 
   getCoins() {
