@@ -29,9 +29,8 @@ class Shark {
       var results = array.result.Bid;
       price = results
         console.log("kq:" + results);
-        console.log("kq array" +array);
-
     });
+    console.log("price:" + results);
     return  price;
   }
 
