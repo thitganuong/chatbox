@@ -21,7 +21,7 @@ class Shark {
   }
 
   getXRP(){
-    return new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
       var url = 'https://bittrex.com/api/v1.1/public/getticker?market=USDT-XRP';
       var price;
           bittrex.sendCustomRequest( url, function( data, err ) {

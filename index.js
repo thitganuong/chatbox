@@ -48,9 +48,11 @@ app.post('/webhook', function(req, res) {
 
           if(text.toLowerCase() == 'getid' || text.toLowerCase() == "get id")
           {
-            var xrpData = shark.getXRP();
+            var xrpData = "";
+            shark.getXRP()
+              .then((results) => console.log("kq xrpData:" + results);
             //  .then((results) => console.log("kq xrpData:" + results))
-              console.log("kq xrpData:" + xrpData);
+
               sendMessage(senderId, "senderId:" + xrpData, false);
             //sendMessage(senderId, "senderId:" +senderId, false);
           } else {
