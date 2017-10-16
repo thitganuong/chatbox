@@ -48,13 +48,17 @@ app.post('/webhook', function(req, res) {
 
           if(text.toLowerCase() == 'getid' || text.toLowerCase() == "get id")
           {
+            sendMessage(senderId, "senderId:" +senderId, false);
+          }
+          else if(text.toLowerCase() == 'xrp' || text.toLowerCase() == "get xrp")
+          {
             var xrpData = 0;
             shark.getXRP()
-              //.then((results) => xrpData = results);
-              .then((results) => sendMessage(senderId, "senderId:" + results, false));
 
-            //  sendMessage(senderId, "senderId:" + results, false);
-            //sendMessage(senderId, "senderId:" +senderId, false);
+              .then((results) => sendMessage(senderId,
+                "Bid:" + result.result.Bid +"\n"
+              + "Last:" + result.result.Last +"\n", false));
+
           } else {
               let apiai = apiaiApp.textRequest(text, {
                   sessionId: 'tabby_cat' // use any arbitrary id

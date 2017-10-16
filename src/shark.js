@@ -27,10 +27,11 @@ class Shark {
           bittrex.sendCustomRequest( url, function( data, err ) {
             if (data == null) return reject();
             var array = JSON.parse(data.toString());
-            var results = array.result.Bid;
-                price = results;
-                console.log("kq:" + results);
-                return resolve(results);
+          //  var results = array.result.Bid;
+          //      price = results;
+          //      console.log("kq:" + results);
+          //      return resolve(results);
+                return resolve(array);
           })
 		    });
       }
