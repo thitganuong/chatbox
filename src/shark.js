@@ -37,7 +37,7 @@ class Shark {
       }
 
   getXRPHistory(){
-    getmarkethistory({market : 'USDT-BTC'}, function(error, data) {});
+  //  getmarkethistory({market : 'USDT-BTC'}, function(error, data) {});
     return new Promise((resolve, reject) => {
 			bittrex.getmarkethistory({market : 'USDT-XRP'},function(error,data) {
 				if (data == null) return reject();
