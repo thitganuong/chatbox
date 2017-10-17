@@ -84,7 +84,8 @@ class Shark {
     }
      if (text != '') {
         facebookBot.doTextResponsePromise('1344416672352785',text);//hai
-      //  facebookBot.doTextResponsePromise('100000262415289',text);//thoan
+        facebookBot.doTextResponsePromise('1022286617832441',text);//aTHanh
+
     }
     if (text != '') console.log(text);
   }
@@ -111,7 +112,7 @@ class Shark {
     var text = '';
     if (d0.status == 1 && d1.status == 1 && d2.status == 1){
       var percent = ((d3.last-d0.last)/d0.last)*100;
-      if (percent >= percentCheck) {
+      if (percent >= percentCheck && ((d2.vol-d0.vol)/d0.vol*100).toFixed(2) >20) {
         text += result.id + ':' + percent.toFixed(2) + '%\n';
         text += 'Nen : 3\n';
         text += 'Min:' + d0.last + '\n';
@@ -119,7 +120,7 @@ class Shark {
         text += 'Vol changed:' + ((d2.vol-d0.vol)/d0.vol*100).toFixed(2) + '\n';
         text += 'https://bittrex.com/Market/Index?MarketName=' + result.id + '\n';
       }
-    } else if (d1.status == 1 && d2.status == 1){
+    } else if (d1.status == 1 && d2.status == 1 && ((d2.vol-d0.vol)/d0.vol*100).toFixed(2) >20){
       var percent = ((d3.last-d1.last)/d1.last)*100;
       if (percent >= percentCheck) {
         text += result.id + ':' + percent.toFixed(2) + '%\n';
