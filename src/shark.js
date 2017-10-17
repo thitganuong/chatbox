@@ -37,7 +37,6 @@ class Shark {
       }
 
   getXRPHistory(){
-  //  getmarkethistory({market : 'USDT-BTC'}, function(error, data) {});
     return new Promise((resolve, reject) => {
 			bittrex.getmarkethistory({market : 'USDT-XRP'},function(error,data) {
 				if (data == null) return reject();
@@ -65,7 +64,7 @@ class Shark {
       var result = results[i];
       var coin = {};
       coin.id = result.MarketName;
-      coin.data = {'last':result.Last,'vol':result.BaseVolume};
+      coin.data = {'last':result.Last,'vol':result.Volume};
       data.push(coin);
     }
     return db.insertOrUpdate(data);
@@ -117,7 +116,7 @@ class Shark {
         text += 'Nen : 3\n';
         text += 'Min:' + d0.last + '\n';
         text += 'Max:' + d3.last + '\n';
-        text += 'Vol changed:' + (d2.vol-d0.vol).toFixed(2) + '\n';
+        text += 'Vol changed:' + ((d2.vol-d0.vol)/d0.vol*100).toFixed(2) + '\n';
         text += 'https://bittrex.com/Market/Index?MarketName=' + result.id + '\n';
       }
     } else if (d1.status == 1 && d2.status == 1){
@@ -127,7 +126,7 @@ class Shark {
         text += 'Nen : 2\n';
         text += 'Min:' + d1.last + '\n';
         text += 'Max:' + d3.last + '\n';
-        text += 'Vol changed:' + (d2.vol-d1.vol).toFixed(2) + '\n';
+        text += 'Vol changed:' + ((d2.vol-d1.vol)/d1.vol*100).toFixed(2) + '\n';
         text += 'https://bittrex.com/Market/Index?MarketName=' + result.id + '\n';
       }
     }
