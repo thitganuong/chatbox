@@ -20,7 +20,7 @@ var server = http.createServer(app);
 app.listen(process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
-  res.send("Server chạy ngon lành.");
+  res.send("Server chạy ngon lành nhá.");
 });
 
 app.get('/webhook', function(req, res) {
