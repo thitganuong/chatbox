@@ -1,7 +1,8 @@
 var bittrex = require('node.bittrex.api');
 const LocalStore = require("./nedb.js")
-const FacebookBot = require("./facebook_bot.js");
+//const FacebookBot = require("./facebook_bot.js");
 var facebookBot = new FacebookBot();
+var binance = require('node-binance-api');
 
 var db = new LocalStore();
 var numOfNen = 4
@@ -83,8 +84,6 @@ class Shark {
       text += this.processResult(result);
     }
      if (text != '') {
-        facebookBot.doTextResponsePromise('1344416672352785',text);//hai
-        facebookBot.doTextResponsePromise('1022286617832441',text);//aTHanh
 
     }
     if (text != '') console.log(text);
@@ -137,17 +136,10 @@ class Shark {
 
 var s = new Shark();
 function run() {
-  s.getCoins()
-   .then((results) => s.insertResults(results))
-   .then(() => s.findFeatureCoins())
-   .then(() => console.log(new Date().toLocaleString() + ' finish'))
-}
-var s2 = new Shark();
-function runBTC() {
-  s2.getCoinsBTC()
-   .then((results) => s2.insertResults(results))
-   .then(() => s2.findFeatureCoins())
-   .then(() => console.log(new Date().toLocaleString() + ' finish'))
+//  s.getCoins()
+//   .then((results) => s.insertResults(results))
+//   .then(() => s.findFeatureCoins())
+//   .then(() => console.log(new Date().toLocaleString() + ' finish'))
 }
 
 run();
