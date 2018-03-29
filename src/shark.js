@@ -1,7 +1,7 @@
 var bittrex = require('node.bittrex.api');
 const LocalStore = require("./nedb.js")
 //const FacebookBot = require("./facebook_bot.js");
-var facebookBot = new FacebookBot();
+//var facebookBot = new FacebookBot();
 var binance = require('node-binance-api');
 
 var db = new LocalStore();
